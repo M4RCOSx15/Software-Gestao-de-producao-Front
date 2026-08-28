@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>ProdManager - Pedidos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/base.css" />
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex">
+<nav class="hidden md:flex bg-surface fixed left-0 h-screen w-64 border-r border-outline-variant flex-col py-6 px-4 z-40">
+  <div class="mb-8 px-2 flex items-center gap-3">
+    <div class="w-8 h-8 rounded bg-primary-container text-on-primary flex items-center justify-center"><span class="material-symbols-outlined">domain</span></div>
+    <h1 class="font-headline-md text-headline-md font-bold text-primary">ProdManager</h1>
+  </div>
+  <ul class="flex flex-col gap-1 flex-1">
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a></li>
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="clientes.html"><span class="material-symbols-outlined">groups</span>Clientes</a></li>
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded text-body-md text-primary font-bold border-r-2 border-primary bg-surface-container-low" href="pedidos.html"><span class="material-symbols-outlined">receipt_long</span>Pedidos</a></li>
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="materia-prima.html"><span class="material-symbols-outlined">inventory_2</span>Matéria-Prima</a></li>
+  </ul>
+  <ul class="flex flex-col gap-1 mt-auto pt-4 border-t border-outline-variant">
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="#" data-logout><span class="material-symbols-outlined">logout</span>Sair</a></li>
+  </ul>
+</nav>
+
+<div class="flex-1 flex flex-col ml-0 md:ml-64 h-screen overflow-hidden">
+  <header class="bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-6 z-30 flex-shrink-0">
+    <div class="flex items-center gap-3">
+      <select id="status-filter" class="h-9 px-3 rounded border border-outline-variant bg-surface text-body-md outline-none">
+        <option value="">Todos os Status</option>
+        <option value="PENDENTE">Pendente</option>
+        <option value="PRODUCAO">Em Produção</option>
+        <option value="CONCLUIDO">Concluído</option>
+        <option value="ATRASADO">Atrasado</option>
+      </select>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="novo-pedido.html" class="h-9 px-4 bg-primary-container text-on-primary rounded-lg flex items-center gap-2 hover:bg-primary transition-colors font-label-md text-label-md">
+        <span class="material-symbols-outlined text-[18px]">add</span> Novo Pedido
+      </a>
+      <div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center font-bold text-on-surface-variant" data-user-initial>U</div>
+    </div>
+  </header>
+
+  <main class="flex-1 overflow-y-auto p-gutter">
+    <div class="max-w-7xl mx-auto flex flex-col gap-6">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface">Pedidos</h2>
+
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden ambient-shadow">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface-container-low border-b border-outline-variant text-label-md font-label-md text-on-surface-variant uppercase">
+              <th class="p-4 whitespace-nowrap">ID</th>
+              <th class="p-4 whitespace-nowrap">Cliente</th>
+              <th class="p-4 whitespace-nowrap">Modelo</th>
+              <th class="p-4 whitespace-nowrap text-right">Qtd</th>
+              <th class="p-4 whitespace-nowrap text-right">Valor Total</th>
+              <th class="p-4 whitespace-nowrap">Prazo</th>
+              <th class="p-4 whitespace-nowrap">Status</th>
+            </tr>
+          </thead>
+          <tbody id="pedidos-body" class="text-body-md font-body-md">
+            <tr><td class="p-4 text-on-surface-variant" colspan="7">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/pedidos.js"></script>
+</body>
+</html>

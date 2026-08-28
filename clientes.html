@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>ProdManager - Clientes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/base.css" />
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex">
+<nav class="hidden md:flex bg-surface fixed left-0 h-screen w-64 border-r border-outline-variant flex-col py-6 px-4 z-40">
+  <div class="mb-8 px-2 flex items-center gap-3">
+    <div class="w-8 h-8 rounded bg-primary-container text-on-primary flex items-center justify-center">
+      <span class="material-symbols-outlined">domain</span>
+    </div>
+    <div>
+      <h1 class="font-headline-md text-headline-md font-bold text-primary">ProdManager</h1>
+    </div>
+  </div>
+  <ul class="flex flex-col gap-1 flex-1">
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded font-body-md text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a></li>
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded font-body-md text-body-md text-primary font-bold border-r-2 border-primary bg-surface-container-low" href="clientes.html"><span class="material-symbols-outlined">groups</span>Clientes</a></li>
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded font-body-md text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="pedidos.html"><span class="material-symbols-outlined">receipt_long</span>Pedidos</a></li>
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded font-body-md text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="materia-prima.html"><span class="material-symbols-outlined">inventory_2</span>Matéria-Prima</a></li>
+  </ul>
+  <ul class="flex flex-col gap-1 mt-auto pt-4 border-t border-outline-variant">
+    <li><a class="flex items-center gap-3 px-3 py-2.5 rounded font-body-md text-body-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" href="#" data-logout><span class="material-symbols-outlined">logout</span>Sair</a></li>
+  </ul>
+</nav>
+
+<div class="flex-1 flex flex-col ml-0 md:ml-64 h-screen overflow-hidden">
+  <header class="bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-6 z-30 flex-shrink-0">
+    <div class="relative hidden sm:block w-64">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+      <input id="search-input" class="w-full h-9 pl-9 pr-3 rounded border border-outline-variant bg-surface-container-lowest text-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" placeholder="Buscar por nome ou CPF..." type="text" />
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center font-bold text-on-surface-variant" data-user-initial>U</div>
+    </div>
+  </header>
+
+  <main class="flex-1 overflow-y-auto p-gutter relative">
+    <div class="max-w-7xl mx-auto flex flex-col gap-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h2 class="font-headline-lg text-headline-lg text-on-surface">Gestão de Clientes</h2>
+          <p class="font-body-md text-body-md text-on-surface-variant mt-1">Gerencie a base de clientes.</p>
+        </div>
+        <button id="btn-new-client" class="h-11 px-6 bg-primary-container text-on-primary font-title-md text-title-md rounded hover:bg-primary transition-colors flex items-center gap-2 shadow-sm">
+          <span class="material-symbols-outlined">add</span> Adicionar Cliente
+        </button>
+      </div>
+
+      <div class="bg-surface-container-lowest border border-outline-variant rounded flex flex-col shadow-sm">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-surface-container-low border-b border-surface-container-high">
+                <th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">ID</th>
+                <th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Nome</th>
+                <th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">CPF</th>
+                <th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Telefone</th>
+                <th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap">Endereço</th>
+                <th class="px-6 py-3 font-label-md text-label-md text-on-surface-variant uppercase whitespace-nowrap text-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="font-body-md text-body-md text-on-surface" id="clientes-body">
+              <tr><td class="px-6 py-4 text-on-surface-variant" colspan="6">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal: Novo/Editar Cliente -->
+<div class="modal-overlay" id="client-modal">
+  <div class="modal-card">
+    <div class="px-6 py-4 border-b border-outline-variant flex items-center justify-between">
+      <h3 class="font-title-md text-title-md text-on-surface" id="client-modal-title">Novo Cliente</h3>
+      <button class="text-on-surface-variant hover:text-on-surface w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-low" id="client-modal-close" type="button">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <form id="client-form" class="p-6 flex flex-col gap-4" novalidate>
+      <div id="client-form-error" class="form-error" role="alert">
+        <span class="material-symbols-outlined text-[20px]">error</span>
+        <span id="client-form-error-text"></span>
+      </div>
+      <input type="hidden" id="client-id" />
+      <div class="flex flex-col gap-1">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="client-nome">Nome Completo</label>
+        <input class="w-full h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest text-body-md outline-none focus:border-primary" id="client-nome" required type="text" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="client-cpf">CPF</label>
+        <input class="w-full h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest text-body-md outline-none focus:border-primary" id="client-cpf" required type="text" placeholder="000.000.000-00" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="client-telefone">Telefone</label>
+        <input class="w-full h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest text-body-md outline-none focus:border-primary" id="client-telefone" required type="text" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="client-endereco">Endereço</label>
+        <input class="w-full h-10 px-3 border border-outline-variant rounded bg-surface-container-lowest text-body-md outline-none focus:border-primary" id="client-endereco" required type="text" />
+      </div>
+      <div class="flex gap-3 mt-2">
+        <button type="button" id="client-form-cancel" class="flex-1 h-10 border border-outline-variant text-on-surface font-title-md rounded hover:bg-surface-container-low transition-colors">Cancelar</button>
+        <button type="submit" id="client-form-submit" class="flex-1 h-10 bg-primary-container text-on-primary font-title-md rounded hover:bg-primary transition-colors">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/clientes.js"></script>
+</body>
+</html>

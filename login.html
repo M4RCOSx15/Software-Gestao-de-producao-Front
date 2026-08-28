@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>ProdManager - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/base.css" />
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-background text-on-background">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-xl border border-surface-variant p-8 md:p-10 ambient-shadow">
+  <div class="text-center mb-8">
+    <h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">ProdManager</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant">Acesse sua conta</p>
+  </div>
+
+  <div id="form-error" class="form-error mb-4" role="alert">
+    <span class="material-symbols-outlined text-[20px]">error</span>
+    <span id="form-error-text"></span>
+  </div>
+
+  <form id="login-form" class="space-y-6" novalidate>
+    <div class="space-y-2">
+      <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" for="email">Email</label>
+      <div class="relative input-focus-ring border border-outline-variant rounded-DEFAULT transition-all duration-200">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span class="material-symbols-outlined text-outline text-[20px]">mail</span>
+        </span>
+        <input class="w-full h-[40px] pl-10 pr-4 bg-transparent border-none focus:ring-0 text-on-surface font-body-md text-body-md placeholder-outline-variant rounded-DEFAULT" id="email" name="email" placeholder="seu@email.com" required type="email" />
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <div class="flex justify-between items-center">
+        <label class="block font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" for="password">Senha</label>
+      </div>
+      <div class="relative input-focus-ring border border-outline-variant rounded-DEFAULT transition-all duration-200">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <span class="material-symbols-outlined text-outline text-[20px]">lock</span>
+        </span>
+        <input class="w-full h-[40px] pl-10 pr-10 bg-transparent border-none focus:ring-0 text-on-surface font-body-md text-body-md placeholder-outline-variant rounded-DEFAULT" id="password" name="password" placeholder="••••••••" required type="password" minlength="1" />
+        <button class="js-toggle-password absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors focus:outline-none" type="button" data-target="password">
+          <span class="material-symbols-outlined text-[20px]">visibility_off</span>
+        </button>
+      </div>
+    </div>
+
+    <button id="submit-btn" class="w-full h-[44px] flex justify-center items-center bg-primary hover:bg-on-primary-fixed-variant text-on-primary font-title-md text-title-md rounded-DEFAULT transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary focus:ring-offset-surface-container-lowest" type="submit">
+      <span class="js-btn-label">Entrar</span>
+    </button>
+  </form>
+
+  <div class="mt-8 text-center">
+    <p class="font-body-md text-body-md text-on-surface-variant">
+      Não tem uma conta?
+      <a class="text-primary hover:text-on-primary-fixed-variant font-title-md text-[14px] transition-colors" href="registro.html">Registre-se</a>
+    </p>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

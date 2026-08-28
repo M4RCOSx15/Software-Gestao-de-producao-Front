@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Crie sua conta - ProdManager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/base.css" />
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center font-body-md selection:bg-primary selection:text-on-primary">
+<div class="w-full max-w-md px-container-padding-md">
+  <div class="text-center mb-8">
+    <div class="flex items-center justify-center gap-2 mb-4">
+      <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+      <span class="font-title-md text-title-md font-bold text-primary tracking-tight">ProdManager</span>
+    </div>
+    <h1 class="font-headline-md text-headline-md text-on-background mb-2">Crie sua conta</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant">Comece a gerenciar sua produção</p>
+  </div>
+
+  <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-container-padding-lg ambient-shadow">
+
+    <div id="form-error" class="form-error mb-4" role="alert">
+      <span class="material-symbols-outlined text-[20px]">error</span>
+      <span id="form-error-text"></span>
+    </div>
+
+    <form id="register-form" class="flex flex-col gap-stack-gap-md" novalidate>
+      <div class="flex flex-col gap-unit">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="name">Nome Completo</label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">person</span>
+          <input class="w-full h-10 pl-10 pr-3 border border-outline-variant rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="name" name="name" placeholder="Seu nome completo" required type="text" />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-unit">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="email">Email</label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">mail</span>
+          <input class="w-full h-10 pl-10 pr-3 border border-outline-variant rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="email" name="email" placeholder="seu.email@empresa.com" required type="email" />
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-unit">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="password">Senha</label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">lock</span>
+          <input class="w-full h-10 pl-10 pr-10 border border-outline-variant rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none" id="password" name="password" placeholder="Mínimo 8 caracteres" required type="password" minlength="8" />
+          <button class="js-toggle-password absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" type="button" data-target="password">
+            <span class="material-symbols-outlined text-xl">visibility_off</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-unit">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase" for="role">Perfil de Acesso</label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">badge</span>
+          <select class="w-full h-10 pl-10 pr-3 border border-outline-variant rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none appearance-none" id="role" name="role" required>
+            <option value="ATENDENTE">Atendente</option>
+            <option value="ADM">Administrador</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="submit-btn" class="w-full h-11 mt-4 bg-primary text-on-primary border border-primary font-label-md text-label-md uppercase tracking-wider rounded hover:bg-on-primary-fixed-variant transition-colors flex items-center justify-center gap-2 group" type="submit">
+        <span class="js-btn-label">Registrar</span>
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </button>
+    </form>
+
+    <div class="mt-6 pt-6 border-t border-surface-container-high text-center">
+      <p class="font-body-md text-body-md text-on-surface-variant">
+        Já tem uma conta?
+        <a class="text-primary font-medium hover:underline hover:text-on-primary-fixed-variant transition-colors" href="login.html">Faça login</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center flex items-center justify-center gap-2">
+    <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+    <span class="font-code-sm text-code-sm text-outline">Sistema Operacional • v2.4.1</span>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

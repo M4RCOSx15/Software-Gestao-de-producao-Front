@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>ProdManager - Novo Pedido</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="js/tailwind-config.js"></script>
+<link rel="stylesheet" href="css/base.css" />
+</head>
+<body class="font-body-md text-on-surface flex bg-surface">
+<nav class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 py-container-padding-md px-stack-gap-md bg-surface-container-lowest border-r border-outline-variant">
+  <div class="mb-8 px-4">
+    <h1 class="text-title-md font-title-md font-bold text-primary">ProdManager</h1>
+  </div>
+  <div class="flex-1 space-y-2">
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all font-body-md" href="dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all font-body-md" href="clientes.html"><span class="material-symbols-outlined">group</span>Clientes</a>
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold bg-surface-container transition-all" href="pedidos.html"><span class="material-symbols-outlined">receipt_long</span>Pedidos</a>
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all font-body-md" href="materia-prima.html"><span class="material-symbols-outlined">inventory_2</span>Matéria-Prima</a>
+  </div>
+  <div class="mt-auto space-y-2 pt-4 border-t border-outline-variant">
+    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all font-body-md" href="#" data-logout><span class="material-symbols-outlined">logout</span>Sair</a>
+  </div>
+</nav>
+
+<main class="flex-1 md:ml-64 min-h-screen flex flex-col">
+  <div class="p-4 md:p-container-padding-lg max-w-5xl mx-auto w-full flex-1">
+    <div class="mb-8">
+      <nav class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant mb-2">
+        <a class="hover:text-primary transition-colors" href="pedidos.html">Pedidos</a>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <span class="text-on-surface">Novo Pedido</span>
+      </nav>
+      <h2 class="text-headline-lg font-headline-lg text-on-surface">Criar Novo Pedido</h2>
+    </div>
+
+    <div id="form-error" class="form-error mb-6" role="alert">
+      <span class="material-symbols-outlined text-[20px]">error</span>
+      <span id="form-error-text"></span>
+    </div>
+
+    <form id="pedido-form" class="grid grid-cols-1 lg:grid-cols-3 gap-6 relative" novalidate>
+      <div class="lg:col-span-2 space-y-6">
+        <section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6">
+          <div class="border-b border-outline-variant pb-4 mb-4">
+            <h3 class="text-title-md font-title-md text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-primary">person_search</span>Cliente</h3>
+          </div>
+          <div>
+            <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="cliente-select">Cliente</label>
+            <select class="w-full h-10 px-4 border border-outline-variant rounded bg-surface-bright focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md outline-none" id="cliente-select" required>
+              <option value="">Carregando clientes...</option>
+            </select>
+            <p class="text-label-md font-label-md text-on-surface-variant mt-2">
+              Nenhum cliente encontrado? <a class="text-primary hover:underline" href="clientes.html">Cadastre um cliente</a> antes de criar o pedido.
+            </p>
+          </div>
+        </section>
+
+        <section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6">
+          <div class="border-b border-outline-variant pb-4 mb-4">
+            <h3 class="text-title-md font-title-md text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-primary">apparel</span>Especificações do Produto</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="model">Modelo</label>
+              <input class="w-full h-10 px-4 border border-outline-variant rounded bg-surface-bright focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md outline-none" id="model" placeholder="Ex: Camiseta Básica" required type="text" />
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="fabric">Tecido</label>
+              <input class="w-full h-10 px-4 border border-outline-variant rounded bg-surface-bright focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md outline-none" id="fabric" placeholder="Ex: Algodão Pima" required type="text" />
+            </div>
+          </div>
+          <div class="bg-surface-bright border border-outline-variant rounded-lg p-4">
+            <h4 class="text-label-md font-label-md text-on-surface-variant mb-4 uppercase tracking-wider">Grade de Tamanhos</h4>
+            <p class="text-label-md text-on-surface-variant mb-4">Cada tamanho com quantidade maior que zero vira um pedido separado.</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4" id="size-grid">
+              <div class="flex flex-col gap-1"><label class="text-center text-label-md font-semibold text-on-surface-variant" for="size-P">P</label><input class="w-full h-10 text-center border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-medium outline-none" data-size="P" id="size-P" min="0" type="number" value="0" /></div>
+              <div class="flex flex-col gap-1"><label class="text-center text-label-md font-semibold text-on-surface-variant" for="size-M">M</label><input class="w-full h-10 text-center border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-medium outline-none" data-size="M" id="size-M" min="0" type="number" value="0" /></div>
+              <div class="flex flex-col gap-1"><label class="text-center text-label-md font-semibold text-on-surface-variant" for="size-G">G</label><input class="w-full h-10 text-center border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-medium outline-none" data-size="G" id="size-G" min="0" type="number" value="0" /></div>
+              <div class="flex flex-col gap-1"><label class="text-center text-label-md font-semibold text-on-surface-variant" for="size-GG">GG</label><input class="w-full h-10 text-center border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-medium outline-none" data-size="GG" id="size-GG" min="0" type="number" value="0" /></div>
+              <div class="flex flex-col gap-1"><label class="text-center text-label-md font-semibold text-on-surface-variant" for="size-XG">XG</label><input class="w-full h-10 text-center border border-outline-variant rounded bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md font-medium outline-none" data-size="XG" id="size-XG" min="0" type="number" value="0" /></div>
+              <div class="flex flex-col justify-end"><div class="h-10 flex items-center justify-center bg-primary/5 rounded border border-primary/20 text-label-md font-bold text-primary"><span class="material-symbols-outlined text-sm mr-1">inventory</span>Total: <span class="ml-1" id="total-qty">0</span></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6">
+          <div class="border-b border-outline-variant pb-4 mb-4">
+            <h3 class="text-title-md font-title-md text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-primary">local_shipping</span>Produção e Logística</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="deadline">Prazo de Entrega</label>
+              <input class="w-full h-10 px-4 border border-outline-variant rounded bg-surface-bright focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md outline-none" id="deadline" required type="date" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-surface-container-lowest rounded-lg border border-outline-variant p-6 sticky top-6 ambient-shadow">
+          <div class="border-b border-outline-variant pb-4 mb-4">
+            <h3 class="text-title-md font-title-md text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-primary">payments</span>Detalhes Financeiros</h3>
+          </div>
+          <div class="space-y-4 mb-6">
+            <div>
+              <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="unit-price">Valor Unitário (R$)</label>
+              <input class="w-full h-10 px-4 border border-outline-variant rounded bg-surface-bright focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md outline-none" id="unit-price" min="0" required step="0.01" type="number" value="0.00" />
+            </div>
+            <div>
+              <label class="block text-label-md font-label-md text-on-surface-variant mb-2" for="payment-method">Forma de Pagamento</label>
+              <select class="w-full h-10 px-4 border border-outline-variant rounded bg-surface-bright focus:border-primary focus:ring-2 focus:ring-primary/20 text-body-md outline-none" id="payment-method">
+                <option value="BOLETO">Boleto Bancário</option>
+                <option value="CARTAO">Cartão de Crédito</option>
+                <option value="PIX">PIX</option>
+                <option value="TRANSFERENCIA">Transferência</option>
+              </select>
+            </div>
+          </div>
+          <div class="bg-surface-bright border border-outline-variant rounded-lg p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-body-md text-on-surface-variant">Quantidade Total:</span>
+              <span class="text-body-md font-semibold text-on-surface" id="summary-qty">0 un</span>
+            </div>
+            <div class="flex justify-between items-center pt-2 border-t border-outline-variant">
+              <span class="text-title-md font-title-md text-on-surface">Valor Total:</span>
+              <span class="text-headline-md font-headline-md text-primary font-bold" id="summary-total">R$ 0,00</span>
+            </div>
+          </div>
+          <div class="flex flex-col gap-3">
+            <button class="w-full h-11 bg-primary text-on-primary rounded font-label-md text-label-md font-medium hover:bg-primary/90 transition-colors flex justify-center items-center gap-2" id="submit-btn" type="submit">
+              <span class="material-symbols-outlined text-sm">check_circle</span>
+              <span class="js-btn-label">Criar Pedido</span>
+            </button>
+            <a href="pedidos.html" class="w-full h-11 bg-surface-container-lowest text-on-surface-variant border border-outline-variant rounded font-label-md text-label-md font-medium hover:bg-surface-container-low transition-colors flex items-center justify-center">Cancelar</a>
+          </div>
+        </div>
+      </aside>
+    </form>
+  </div>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/novo-pedido.js"></script>
+</body>
+</html>
